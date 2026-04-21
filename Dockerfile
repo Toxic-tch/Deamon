@@ -18,8 +18,8 @@ COPY config.yml /etc/pterodactyl/config.yml
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-# Expose ports
-EXPOSE 8080 2022 2375 2376
+# Render.com requires PORT to be exposed
+ENV PORT=8080
+EXPOSE 8080
 
-# Start everything
 CMD ["/start.sh"]

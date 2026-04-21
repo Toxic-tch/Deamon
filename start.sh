@@ -4,6 +4,9 @@ set -e
 echo "=== Starting Pterodactyl Wings ==="
 echo "=== Panel: https://hym5hs-5080.csb.app ==="
 
+# Set timezone
+export TZ=UTC
+
 # Start Docker daemon in background
 echo ">>> Starting Docker daemon..."
 dockerd \
@@ -25,7 +28,7 @@ while [ $i -lt 30 ]; do
     fi
     i=$((i + 1))
     if [ $i -eq 30 ]; then
-        echo ">>> WARNING: Docker did not start in time. Wings may not work for game servers."
+        echo ">>> WARNING: Docker did not start in time."
         echo ">>> Docker log:"
         cat /var/log/dockerd.log
     fi
@@ -37,4 +40,4 @@ echo ">>> Wings config loaded."
 echo ">>> Starting Wings on port 8080..."
 
 # Start Wings
-exec TZ=UTC /usr/local/bin/wings
+exec /usr/local/bin/wings
